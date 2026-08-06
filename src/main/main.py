@@ -63,7 +63,7 @@ def load_and_clean_users(file_path):
                 continue
 
             cursor.execute(
-                "INSERT INTO users(firstName, lastName) VALUES (?,?,?)",
+                "INSERT INTO users(firstName, lastName) VALUES (?,?)",
                 (row[0], row[1])
             )
     conn.commit()
@@ -72,7 +72,15 @@ def load_and_clean_users(file_path):
 # This function will load the callLogs.csv file into the callLogs table, discarding any records with incomplete data
 def load_and_clean_call_logs(file_path):
 
-    print("TODO: load_call_logs")
+    with open(file_path, "r", newline="") as file1:
+        reader1 = csv.reader(file)
+        next(reader1)
+
+        for row in reader1:
+            if len(row) != 5:
+                continue
+            if "" in row:
+                continue
 
 
 # This function will write analytics data to testUserAnalytics.csv - average call time, and number of calls per user.
