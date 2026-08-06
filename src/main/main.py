@@ -62,7 +62,10 @@ def load_and_clean_users(file_path):
         for row in reader:
             if len(row) != 2:
                 continue
-            if "  " in row:
+
+            first_name = row[0].strip()
+            last_name = row[1].strip()
+            if first_name == "" or last_name == "":
                 continue
 
             cursor.execute(
