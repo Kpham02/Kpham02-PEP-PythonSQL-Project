@@ -61,8 +61,6 @@ def load_and_clean_users(file_path):
         for row in reader:
             if len(row) != 2:
                 continue
-            if "" in row:
-                continue
 
             cursor.execute(
                 "INSERT INTO users(firstName, lastName) VALUES (?,?)",
@@ -84,6 +82,20 @@ def load_and_clean_call_logs(file_path):
             if "" in row:
                 continue
 
+            cursor.execute(
+                """
+                INSERT INTO callLogs (phoneNumber, startTime, endTime, direction, userId)
+                Values(?,?,?,?,?)
+                """,
+                (
+                    row[0],
+                    startTime,
+                    endTime,
+                    row[3],
+                    userId
+                )
+            )
+        conn.commit()
 
 # This function will write analytics data to testUserAnalytics.csv - average call time, and number of calls per user.
 # You must save records consisting of each userId, avgDuration, and numCalls
