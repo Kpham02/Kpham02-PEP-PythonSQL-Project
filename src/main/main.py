@@ -73,7 +73,7 @@ def load_and_clean_users(file_path):
 def load_and_clean_call_logs(file_path):
 
     with open(file_path, "r", newline="") as file1:
-        reader1 = csv.reader(file)
+        reader1 = csv.reader(file1)
         next(reader1)
 
         for row in reader1:
