@@ -89,10 +89,10 @@ def load_and_clean_call_logs(file_path):
                 """,
                 (
                     row[0],
-                    startTime,
-                    endTime,
+                    row[1],
+                    row[2],
                     row[3],
-                    userId
+                    row[4]
                 )
             )
         conn.commit()
