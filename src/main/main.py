@@ -111,6 +111,7 @@ def write_user_analytics(csv_file_path):
         """
         SELECT userId, AVG(endTime - startTime) AS AvgDuration, COUNT(*) AS CallNums
         FROM calllogs
+        GROUP BY userId
         ORDER BY userId
         """
     )
